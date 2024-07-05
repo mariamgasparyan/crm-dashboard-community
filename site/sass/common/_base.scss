@@ -1,0 +1,30 @@
+@include scrollbar();
+
+@include font-face('poppins-regular', 'fonts/poppins-regular');
+@include font-face('poppins-semibold', 'fonts/poppins-semibold');
+@include font-face('poppins-bold', 'fonts/poppins-bold');
+
+body, button, input {
+  @extend %font-poppins-regular;
+}
+
+body {
+    background-color: $color--FAFBFF;
+}
+
+:root {
+  font-size: $font-size-14;
+}
+
+::selection {
+    background-color: $color--5932EA;
+    color: $color--FFFFFF;
+}
+
+table, a {
+  word-break: break-word;
+}
+
+.hide {
+  @extend %hide;
+}

@@ -1,0 +1,20 @@
+.button {
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    height: 40px;
+    @extend %flex-center;
+    @extend %font-poppins-semibold;
+    @include transition-two-parameter(background-color, color);
+
+    &:not(:hover) {
+        background-color: $color--FFFFFF;
+        color: $color--4925E9;
+    }
+
+    &:hover {
+        background-color: $color--4925E9;
+        color: $color--FFFFFF;
+    }
+}

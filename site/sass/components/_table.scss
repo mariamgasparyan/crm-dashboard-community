@@ -1,0 +1,82 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__head {
+        position: relative;
+
+        &:after {
+            content: "";
+            position: absolute;
+            inset-inline: -38px -44px;
+            height: 1px;
+            background-color: $color--EEEEEE;
+        }
+    }
+
+    &__title {
+        color: $color--B5B7C0;
+        text-align: left;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        letter-spacing: $letter-spacing-minus;
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+
+    &__title,
+    &__cell {
+        min-width: 130px;
+        vertical-align: top;
+        
+        &:not(:first-child) {
+            padding-inline-start: 15px;
+        }
+    
+        &:not(:last-child) {
+            padding-inline-end: 15px;
+        }
+    }
+
+    &__cell {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $color--EEEEEE;
+        letter-spacing: $letter-spacing-minus;
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+
+    &__status {
+        min-width: 80px;
+        border: 1px solid;
+        height: 29px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 4px;
+        display: inline-flex;
+        @extend %flex-center;
+
+        &--active {
+            background-color: lighten($color--16C098, 38%);
+            border-color: $color--00B087;
+            color: $color--008767;
+        }
+
+        &--inactive {
+            background-color: $color--FFC5C5;
+            border-color: $color--DF0404;
+            color: $color--DF0404;
+        }
+    }
+}
+
+.table-responsive {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    @include scrollbar(8px, 8px);
+}

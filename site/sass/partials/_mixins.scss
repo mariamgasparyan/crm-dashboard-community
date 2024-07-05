@@ -1,0 +1,87 @@
+@mixin font-face($font-name, $font-path, $font-weight: normal, $font-style: normal) {
+    @font-face {
+      font-family: $font-name;
+      src: url('../#{$font-path}.woff') format('woff');
+      font-weight: $font-weight;
+      font-style: $font-style;
+    }
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+    transition: $property $duration $timing-function $delay;
+}
+
+@mixin transition-two-parameter($property-first: all,  $property-second: all, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+    transition: $property-first $duration $timing-function $delay, 
+                $property-second $duration $timing-function $delay;
+}
+
+@mixin scrollbar($width: 12px, $height: 12px) {
+        
+    &::-webkit-scrollbar {
+        width: $width;
+        height: $height;
+    }
+            
+    &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: $color--e7e7e7;
+        border: 1px solid $color--9197B3;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: $color--9197B3;
+    }
+}
+
+@mixin sidebar-minimized() {
+    .upgrade,
+    .title__text,
+    .user-info,
+    .user__arrow,
+    .nav__link-text,
+    .nav__link-arrow {
+        display: none;
+    }
+
+    .title {
+        justify-content: center;
+    }
+
+    .sidebar__inner {
+        padding-left: 0;
+        padding-right: 0;
+        align-items: center;
+    }
+
+    .nav__link {
+        width: 46px;
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+        display: flex;
+    }
+
+    $sidebar-width: 102px;
+    width: $sidebar-width;
+}
+
+@mixin information-column-type {
+    padding: 20px 30px;
+
+    &__article {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+        text-align: center;
+        
+        &:last-child {
+            justify-content: flex-start;
+        }
+    }
+    &__image {
+        padding-inline-start: #{$image-move-size * $max-image-items}px;
+    }
+}

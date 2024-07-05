@@ -1,0 +1,48 @@
+@media only print {
+    // body {
+    //     page-break-inside: avoid;
+    //     page-break-after: avoid;
+    //     page-break-before: avoid;
+    // }
+    
+    :root {
+        font-size: $font-size-12;
+    }
+
+    html[dir="rtl"] {
+        font-size: 12px;
+    }
+
+    .customers__header {
+        padding-bottom: 20px;
+    }
+    
+    .table__cell {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .customers__link,
+    .sidebar,
+    .search,
+    .dropdown {
+        display: none;
+    }
+
+    .wrapper {
+        padding-inline-start: 0;
+    }
+
+    html[dir="rtl"] .content,
+    .content {
+        padding-inline: 30px;
+    }
+
+    .content {
+        row-gap: 20px;
+    }
+
+    .information {
+        @include information-column-type();
+    }
+}

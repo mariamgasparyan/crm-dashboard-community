@@ -1,0 +1,328 @@
+.wrapper {
+    height: 100vh;
+    padding-inline-start: $sidebar-width;
+    @include transition(padding-inline-start);
+    @extend %flex;
+}
+
+.sidebar {
+    @extend %block-shadow;
+}
+
+.customers,
+.information {
+    @extend %block-rounded;
+    @extend %block-shadow;
+}
+
+strong, b {
+    font-weight: normal;
+    @extend %font-poppins-bold;
+}
+
+.body--sidebar-minimized {
+    .wrapper {
+        $sidebar-width: 102px;
+        padding-inline-start: $sidebar-width;
+    }
+    .sidebar-toggle__icon {
+        transform: rotate(270deg);
+    }
+}
+
+.sidebar {
+    width: $sidebar-width;
+    position: fixed;
+    top: 0;
+    inset-inline-start: 0;
+    bottom: 0;
+
+    &.sidebar--minimized {
+        @include sidebar-minimized();
+    }
+
+    &__inner {
+        row-gap: 40px;
+        padding: 38px 28px;
+        height: 100%;
+        overflow: auto;
+        @extend %flex-shrink-zero;
+        @extend %flex-column-space-between;
+        @include scrollbar(8px, 8px);
+    }
+
+    &__top {
+        row-gap: 53px;
+        @extend %flex-column;
+    }
+
+    &__bottom {
+        row-gap: 46px;
+        padding-bottom: 40px;
+        @extend %flex-column;
+    }
+
+    &-toggle {
+        &__btn {
+            position: absolute;
+            inset-inline-end: -14px;
+            background-color: $color--FFFFFF;
+            border-radius: 6px;
+            border: 1px solid $color--EEEEEE;
+            top: 90px;
+            width: 32px;
+            height: 32px;
+            box-shadow: 4px 4px 8px rgba(226, 236, 249, 0.5);
+            @extend %flex-center;
+            
+            &:hover {
+                .sidebar-toggle__icon-stroke {
+                    stroke: $color--5932EA;
+                }
+            }
+        }
+
+        &__icon {
+            transform: rotate(90deg);
+            @include transition(transform);
+            &-stroke {
+                stroke: $color--757575;
+                @include transition(stroke);
+            }
+        }
+    }
+}
+
+.content {
+    padding-block: 41px 78px;
+    padding-inline: 71px 95px;
+    flex-grow: 1;
+    row-gap: 40px;
+    @extend %flex-column;
+}
+
+.header {
+    column-gap: 30px;
+    @extend %flex-space-between;
+
+    &__title {
+        @extend %fs24;
+    }
+}
+
+.information {
+    padding-top: 33px;
+    padding-bottom: 34px;
+    letter-spacing: $letter-spacing-minus;
+    @extend %flex-space-between;
+
+    &__personal {
+        padding-bottom: 6px;
+        row-gap: 2px;
+        @extend %flex-column;
+    }
+
+    &__article {
+        column-gap: 20px;
+        position: relative;
+        flex-basis: 33.333%;
+        padding-left: 50px;
+        padding-right: 50px;
+        @extend %flex;
+
+        &:nth-child(2) {
+            justify-content: center;
+            border-left: 1px solid $color--F0F0F0;
+            border-right: 1px solid $color--F0F0F0;
+        }
+
+        &:last-child {
+            justify-content: flex-end;
+            .information__personal {
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    &__title {
+        color: $color--ACACAC;
+        padding-bottom: 6px;
+        @extend %fs14;
+    }
+
+    &__count {
+        color: $color--333333;
+        @extend %fs32;
+        @extend %font-poppins-semibold;
+    }
+
+    &__icon {
+        @extend %flex-shrink-zero;
+    }
+
+    &__info {
+        @extend %fs12;
+
+        &-icon {
+            transform: translateY(4px);
+        }
+
+        &--increase {
+            .information__info-text {
+                color: $color--00AC4F;
+            }
+
+            .information__info-icon-stroke {
+                stroke: $color--00AC4F;
+            }
+        }
+
+        &--decrease {
+            .information__info-text {
+                color: $color--D0004B;
+            }
+            
+            .information__info-icon {
+                transform: rotate(180deg) translateY(-4px);
+                &-stroke {
+                    stroke: $color--D0004B;
+                }
+            }
+        }
+    }
+
+
+    &__image {
+        @extend %flex;
+
+        &-item {
+            width: 26px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid $color--FFFFFF;
+
+            @for $i from 2 through $max-image-items {
+                &:nth-child(#{$i}) {
+                    transform: translateX(-#{($i - 1) * $image-move-size}px);
+                }
+            }
+        }
+    }
+}
+
+.customers {
+    padding-block: 30px 40px;
+    padding-inline: 38px 44px;
+
+    &__header {
+        padding-bottom: 35px;
+        @extend %flex-space-between-center;
+    }
+
+    &__info {
+        row-gap: 10px;
+        @extend %flex-column;
+    }
+
+    &__title {
+        line-height: 33px;
+        @extend %fs22;
+        @extend %font-poppins-semibold;
+    }
+
+    &__link{
+        color: $color--16C098;
+        position: relative;
+        align-self: flex-start;
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            width: 0;
+            background-color: $color--16C098;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            height: 1px;
+            @include transition(width);
+        }
+
+        &:hover:after {
+            width: 100%;
+        }
+    }
+
+    &-form {
+        column-gap: 16px;
+        @extend %flex;
+    }
+}
+
+.title {
+    column-gap: 8px;
+    @extend %flex-align-center;
+    
+    &__text {
+        align-items: baseline;
+        column-gap: 5px;
+        @extend %font-poppins-semibold;
+        @extend %fs26;
+        @extend %flex;
+    }
+
+    &__text-version {
+        @extend %font-poppins-regular;
+        @extend %fs11;
+        color: $color--838383;
+    }
+}
+
+.user {
+    column-gap: 12px;
+    @extend %flex-space-between-center;
+
+    &__pic {
+        max-width: 42px;
+        border-radius: 50%;
+        overflow: hidden;
+        @extend %flex-shrink-zero;
+    }
+
+    &-info {
+        flex-grow: 1;
+        @extend %flex-column;
+        row-gap: 5px;
+
+        &__name {
+            @extend %fs14;
+
+        }
+
+        &__profession {
+            color: $color--757575;
+            @extend %fs12;
+        }
+    }
+
+    &__arrow {
+        &-link {
+            @extend %flex;
+
+            &:hover {
+                .user__arrow-icon{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        &-icon {
+            @extend %flex-shrink-zero;
+            @include transition(transform);
+
+            &-stroke {
+                stroke: $color--757575;
+            }
+        }
+    }
+}

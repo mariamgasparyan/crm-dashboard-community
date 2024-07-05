@@ -1,0 +1,31 @@
+html[dir="rtl"] {
+    .information__image-item {
+        @for $i from 2 through $max-image-items {
+            &:nth-child(#{$i}) {
+                transform: translateX(#{($i - 1) * 8}px);
+            }
+        }
+    }
+
+    .nav__link:not(.nav__link--active):hover .nav__link-arrow {
+        transform: translateX(10px);
+    }
+
+    .table__title {
+        text-align: right;
+    }
+
+    .sidebar-toggle__btn,
+    .pagination__icon {
+        transform: rotate(180deg);
+    }
+
+    .table__title:last-child,
+    .table__cell:last-child {
+        text-align: left;
+    }
+
+    .content {
+        padding-inline: 70pxx;
+    }
+}
